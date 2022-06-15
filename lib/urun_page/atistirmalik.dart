@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../anaekran_page/anaekran.dart';
 
-class firindan extends StatelessWidget {
-  const firindan({Key? key}) : super(key: key);
+class atistirmalik extends StatelessWidget {
+  const atistirmalik({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,13 +46,7 @@ class firindan extends StatelessWidget {
                           Navigator.pushNamed(context, 'firindan');
                         },
                         child: const Text("Fırından",
-                            style: TextStyle(
-                              color: Colors.white,
-                              decoration: TextDecoration.underline,
-                              height: 1.5,
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                            )),
+                            style: TextStyle(color: Colors.white)),
                       ),
                       TextButton(
                         onPressed: () {
@@ -66,7 +60,13 @@ class firindan extends StatelessWidget {
                           Navigator.pushNamed(context, 'atistirmalik');
                         },
                         child: const Text("Atıştırmalık",
-                            style: TextStyle(color: Colors.white)),
+                            style: TextStyle(
+                              color: Colors.white,
+                              decoration: TextDecoration.underline,
+                              height: 1.5,
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                            )),
                       ),
                       TextButton(
                         onPressed: () {
@@ -99,7 +99,7 @@ class firindan extends StatelessWidget {
                 child: Row(
                   children: const [
                     Text(
-                      "Paketli Ekmek",
+                      "Cips",
                       style: TextStyle(
                           fontSize: 15,
                           color: Color.fromARGB(255, 107, 107, 107)),
@@ -112,34 +112,30 @@ class firindan extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      itemekle('assets/images/ekmek1.jpeg', 17.95,
-                          "Çavdarlı Ekmek", "350 g"),
-                      itemekle('assets/images/ekmek2.jpeg', 16.50,
-                          "Büyük Tost Ekmeği", "550 g"),
-                      itemekle('assets/images/ekmek3.jpeg', 18.95,
-                          "Tahıllı Ekmek", "550 g"),
+                      itemekle('assets/images/cips1.jpeg', 24.95,
+                          "Ruffles Mangalda Et", "107 g"),
+                      itemekle('assets/images/cips2.png', 26.50,
+                          "Doritos Nacho Peynirli", "113 g"),
+                      itemekle('assets/images/cips3.jpeg', 21.95,
+                          "Çerezza Soğanlı", "117 g"),
                     ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      itemekle('assets/images/ekmek4.jpeg', 18.95,
-                          "Lifli Ekmek", "520 g"),
-                      itemekle('assets/images/ekmek5.jpeg', 19.95,
-                          "Otantik Ekmek", "550 g"),
-                      itemekle('assets/images/ekmek6.jpeg', 17.5, "Çok Ekmek",
-                          "350 g"),
+                      itemekle('assets/images/cips4.jpeg', 22.95,
+                          "Çerezza Süt Mısırı", "117 g"),
+                      itemekle('assets/images/cips5.jpeg', 17.25,
+                          "Çerezza Acılı", "117 g"),
+                      itemekle('assets/images/cips6.jpeg', 2.8,
+                          "Çerezza Kokteyl", "117 g"),
                     ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      itemekle('assets/images/ekmek7.jpeg', 22.95,
-                          "Tam Buğday Ekmeği", "520 g"),
-                      itemekle('assets/images/ekmek8.jpeg', 17.25,
-                          "Tost Ekmeği", "350 g"),
-                      itemekle('assets/images/ekmek9.jpeg', 17.25,
-                          "Glütensiz Ekmek", "240 g"),
+                      itemekle('assets/images/cips7.jpeg', 22.95,
+                          "Çerezza Aile Boy Cips", "3 x 33 g"),
                     ],
                   ),
                 ],

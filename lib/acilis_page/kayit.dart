@@ -1,15 +1,17 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
-class acilis extends StatefulWidget {
-  acilis({Key? key}) : super(key: key);
+class kayit extends StatefulWidget {
+  kayit({Key? key}) : super(key: key);
 
   @override
-  State<acilis> createState() => _acilisState();
+  State<kayit> createState() => _kayitState();
 }
 
-class _acilisState extends State<acilis> {
+class _kayitState extends State<kayit> {
   final sifre = TextEditingController();
   final mail = TextEditingController();
   final adsoyad = TextEditingController();
@@ -18,32 +20,37 @@ class _acilisState extends State<acilis> {
   String? adsoyadtext;
   String? sifretext;
 
-  girisYap(var bilgi) async {
-    try {
-      var control = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: mailtext!, password: sifretext!)
-          .then((kullanici) {
-        Navigator.pushNamed(
-          context,
-          'ekran',
-          arguments: bilgi,
-        );
-      });
-    } catch (error) {
-      print(error.toString);
-      EasyLoading.showToast(
-        "Hatalı Bilgi Girişi!",
-        duration: const Duration(seconds: 2),
-        toastPosition: EasyLoadingToastPosition.center,
-      );
-    }
-    ;
+  yaziEkle() {
+    FirebaseFirestore.instance
+        .collection('KullaniciVerileri')
+        .doc(mailtext)
+        .set({'adsoyad': adsoyadtext, 'mail': mailtext, 'sifre': sifretext});
+  }
+
+  Future<void> kayitOl() async {
+    var user = await FirebaseAuth.instance
+        .createUserWithEmailAndPassword(email: mailtext!, password: sifretext!)
+        .then((kullanici) {
+      FirebaseFirestore.instance
+          .collection("KullaniciVerileri")
+          .doc(mailtext)
+          .set({'adsoyad': adsoyadtext, 'mail': mailtext, 'sifre': sifretext});
+    });
+  }
+
+  girisYap() async {
+    await FirebaseAuth.instance
+        .signInWithEmailAndPassword(email: mailtext!, password: sifretext!)
+        .then((kullanici) {
+      Navigator.pushNamed(context, 'ekran');
+    });
   }
 
   @override
   void dispose() {
     sifre.dispose();
     mail.dispose();
+    adsoyad.dispose();
     super.dispose();
   }
 
@@ -69,7 +76,7 @@ class _acilisState extends State<acilis> {
           children: [
             Padding(
               padding: const EdgeInsets.only(
-                  right: 30, left: 30, top: 40, bottom: 200),
+                  right: 30, left: 30, top: 40, bottom: 250),
               child: Column(
                 children: [
                   TextFormField(
@@ -112,15 +119,6 @@ class _acilisState extends State<acilis> {
                   SizedBox(
                     height: 10,
                   ),
-                  Row(
-                    children: [
-                      TextButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, 'kayit');
-                          },
-                          child: Text("Kayıt Ol")),
-                    ],
-                  )
                 ],
               ),
             ),
@@ -142,11 +140,16 @@ class _acilisState extends State<acilis> {
                           toastPosition: EasyLoadingToastPosition.center,
                         );
                       } else {
-                        girisYap(bilgi);
+                        kayitOl();
+                        Navigator.pushNamed(
+                          context,
+                          'acilis',
+                          arguments: bilgi,
+                        );
                       }
                     },
                     child: Text(
-                      "Giriş Yap",
+                      "Kayıt Ol",
                       style: TextStyle(color: Colors.white, fontSize: 18),
                     )),
               ),

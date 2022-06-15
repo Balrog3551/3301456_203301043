@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:sayfa_gecisi/acilis_page/acilis.dart';
 import 'package:sayfa_gecisi/anaekran_page/anaekran.dart';
 
 class profil extends StatelessWidget {
@@ -72,7 +74,12 @@ class profil extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, '/');
+                  FirebaseAuth.instance.signOut().then((deger) {
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (_) => acilis()),
+                        (Route<dynamic> route) => false);
+                  });
                 },
                 child: Card(
                     child: ListTile(

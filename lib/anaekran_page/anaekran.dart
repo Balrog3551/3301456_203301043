@@ -1,22 +1,66 @@
 import 'package:flutter/material.dart';
 
-class ekran extends StatelessWidget {
+class ekran extends StatefulWidget {
   var bilgi;
   ekran({required this.bilgi, Key? key}) : super(key: key);
 
   @override
+  State<ekran> createState() => _ekranState();
+}
+
+class _ekranState extends State<ekran> with SingleTickerProviderStateMixin {
+  double opacity = 0.0;
+  late AnimationController controller;
+
+  @override
+  void initState() {
+    controller = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 2),
+      lowerBound: 0.0,
+      upperBound: 1,
+    );
+    controller.addListener(() {
+      setState(() {});
+    });
+    controller.forward();
+    controller.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        controller.reverse().orCancel;
+      } else if (status == AnimationStatus.dismissed) {
+        controller.forward().orCancel;
+      }
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    bilgi = ModalRoute.of(context)?.settings.arguments;
+    widget.bilgi = ModalRoute.of(context)?.settings.arguments;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           toolbarHeight: 75,
-          title: const Text(
-            "götür",
-            style: TextStyle(
-              color: Colors.yellow,
-              fontSize: 30,
+          title: AnimatedOpacity(
+            duration: Duration(seconds: 1),
+            opacity: controller.value,
+            child: Column(
+              children: [
+                Text(
+                  "götür",
+                  style: TextStyle(
+                    color: Colors.yellow,
+                    fontSize: 30,
+                  ),
+                ),
+              ],
             ),
           ),
           centerTitle: true,
@@ -24,7 +68,7 @@ class ekran extends StatelessWidget {
         ),
         body: Stack(
           children: [
-            bottom_bar(context, bilgi, 'ekran'),
+            bottom_bar(context, widget.bilgi, 'ekran'),
             Column(
               children: [
                 Row(
@@ -33,7 +77,8 @@ class ekran extends StatelessWidget {
                     FloatingActionButton.extended(
                       heroTag: const Text("adres"),
                       onPressed: () {
-                        Navigator.pushNamed(context, 'adres', arguments: bilgi);
+                        Navigator.pushNamed(context, 'adres',
+                            arguments: widget.bilgi);
                       },
                       label: const Text(
                         "| Ev Bosna Hersek Selçuklu >",
@@ -157,6 +202,59 @@ class ekran extends StatelessWidget {
                           },
                         ),
                         const Text("Temel Gıda")
+                      ],
+                    )
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Column(
+                      children: [
+                        IconButton(
+                          icon: Image.asset('assets/images/atistirmalik.jpeg'),
+                          iconSize: 70,
+                          onPressed: () {
+                            Navigator.pushNamed(context, 'atistirmalik');
+                          },
+                        ),
+                        const Text("Atıştırmalık")
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        IconButton(
+                          icon: Image.asset('assets/images/dondurma.jpeg'),
+                          iconSize: 70,
+                          onPressed: () {
+                            Navigator.pushNamed(context, 'dondurma');
+                          },
+                        ),
+                        const Text("Dondurma")
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        IconButton(
+                          icon: Image.asset('assets/images/sutUrunleri.jpeg'),
+                          iconSize: 70,
+                          onPressed: () {
+                            Navigator.pushNamed(context, 'suturunleri');
+                          },
+                        ),
+                        const Text("Süt Ürünleri")
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        IconButton(
+                          icon: Image.asset('assets/images/kahvaltilik.jpeg'),
+                          iconSize: 70,
+                          onPressed: () {
+                            Navigator.pushNamed(context, 'kahvaltilik');
+                          },
+                        ),
+                        const Text("Kahvaltılık")
                       ],
                     )
                   ],

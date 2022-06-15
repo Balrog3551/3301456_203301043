@@ -21,52 +21,77 @@ class sebzemeyve extends StatelessWidget {
       body: ListView(
         children: [
           Container(
-            height: 50,
-            width: 420,
-            decoration: BoxDecoration(color: Color.fromARGB(255, 87, 53, 180)),
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, 'suicecek');
-                    },
-                    child: Text(
-                      "Su & İçecek",
-                      style: TextStyle(
-                        color: Colors.white,
+              height: 50,
+              width: 420,
+              decoration:
+                  BoxDecoration(color: Color.fromARGB(255, 87, 53, 180)),
+              child: SingleChildScrollView(
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      const TextButton(
+                        onPressed: null,
+                        child: Text("Su & İçecek",
+                            style: TextStyle(color: Colors.white)),
                       ),
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      "Meyve & Sebze",
-                      style: TextStyle(
-                        color: Colors.white,
-                        decoration: TextDecoration.underline,
-                        height: 1.5,
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, 'sebzemeyve');
+                        },
+                        child: const Text("Meyve & Sebze",
+                            style: TextStyle(
+                              color: Colors.white,
+                              decoration: TextDecoration.underline,
+                              height: 1.5,
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                            )),
                       ),
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, 'firindan');
-                    },
-                    child: const Text("Fırından",
-                        style: TextStyle(color: Colors.white)),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, 'temelgida');
-                    },
-                    child: const Text("Temel Gıda",
-                        style: TextStyle(color: Colors.white)),
-                  )
-                ]),
-          ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, 'firindan');
+                        },
+                        child: const Text("Fırından",
+                            style: TextStyle(color: Colors.white)),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, 'temelgida');
+                        },
+                        child: const Text("Temel Gıda",
+                            style: TextStyle(color: Colors.white)),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, 'atistirmalik');
+                        },
+                        child: const Text("Atıştırmalık",
+                            style: TextStyle(color: Colors.white)),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, 'dondurma');
+                        },
+                        child: const Text("Dondurma",
+                            style: TextStyle(color: Colors.white)),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, 'suturunleri');
+                        },
+                        child: const Text("Süt Ürünleri",
+                            style: TextStyle(color: Colors.white)),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, 'kahvaltilik');
+                        },
+                        child: const Text("Kahvaltılık",
+                            style: TextStyle(color: Colors.white)),
+                      ),
+                    ]),
+                scrollDirection: Axis.horizontal,
+              )),
           Column(
             children: [
               Padding(

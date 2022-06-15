@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+
 import '../anaekran_page/anaekran.dart';
 
-class firindan extends StatelessWidget {
-  const firindan({Key? key}) : super(key: key);
+class kahvaltilik extends StatelessWidget {
+  const kahvaltilik({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,13 +47,7 @@ class firindan extends StatelessWidget {
                           Navigator.pushNamed(context, 'firindan');
                         },
                         child: const Text("Fırından",
-                            style: TextStyle(
-                              color: Colors.white,
-                              decoration: TextDecoration.underline,
-                              height: 1.5,
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                            )),
+                            style: TextStyle(color: Colors.white)),
                       ),
                       TextButton(
                         onPressed: () {
@@ -87,7 +82,13 @@ class firindan extends StatelessWidget {
                           Navigator.pushNamed(context, 'kahvaltilik');
                         },
                         child: const Text("Kahvaltılık",
-                            style: TextStyle(color: Colors.white)),
+                            style: TextStyle(
+                              color: Colors.white,
+                              decoration: TextDecoration.underline,
+                              height: 1.5,
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                            )),
                       ),
                     ]),
                 scrollDirection: Axis.horizontal,
@@ -99,7 +100,7 @@ class firindan extends StatelessWidget {
                 child: Row(
                   children: const [
                     Text(
-                      "Paketli Ekmek",
+                      "Sucuk",
                       style: TextStyle(
                           fontSize: 15,
                           color: Color.fromARGB(255, 107, 107, 107)),
@@ -112,34 +113,21 @@ class firindan extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      itemekle('assets/images/ekmek1.jpeg', 17.95,
-                          "Çavdarlı Ekmek", "350 g"),
-                      itemekle('assets/images/ekmek2.jpeg', 16.50,
-                          "Büyük Tost Ekmeği", "550 g"),
-                      itemekle('assets/images/ekmek3.jpeg', 18.95,
-                          "Tahıllı Ekmek", "550 g"),
+                      itemekle('assets/images/suc1.jpeg', 24.50,
+                          "Şahin Altın K Sucuk", "60 g"),
+                      itemekle('assets/images/suc2.jpeg', 70.90,
+                          "Şahin Kangal Sucuk", "180 g"),
+                      itemekle('assets/images/suc3.jpeg', 103.45,
+                          "Polonez Kangal Sucuk", "240 g"),
                     ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      itemekle('assets/images/ekmek4.jpeg', 18.95,
-                          "Lifli Ekmek", "520 g"),
-                      itemekle('assets/images/ekmek5.jpeg', 19.95,
-                          "Otantik Ekmek", "550 g"),
-                      itemekle('assets/images/ekmek6.jpeg', 17.5, "Çok Ekmek",
-                          "350 g"),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      itemekle('assets/images/ekmek7.jpeg', 22.95,
-                          "Tam Buğday Ekmeği", "520 g"),
-                      itemekle('assets/images/ekmek8.jpeg', 17.25,
-                          "Tost Ekmeği", "350 g"),
-                      itemekle('assets/images/ekmek9.jpeg', 17.25,
-                          "Glütensiz Ekmek", "240 g"),
+                      itemekle('assets/images/suc4.jpeg', 74.90,
+                          "Namet Kangal Sucuk", "225 g"),
+                      itemekle('assets/images/suc6.jpeg', 115.0,
+                          "Şahin Kangal Sucuk", "350 g"),
                     ],
                   ),
                 ],
